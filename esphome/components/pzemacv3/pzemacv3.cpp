@@ -1,4 +1,5 @@
 #include "pzemacv3.h"
+#include "esphome/components/pzemac/pzemac.h"
 #include "esphome/core/log.h"
 
 namespace esphome

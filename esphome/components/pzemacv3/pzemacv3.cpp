@@ -62,13 +62,13 @@ namespace esphome
       ESP_LOGD(TAG, "PZEM AC: V=%.1f V, I=%.3f A, P=%.1f W, E=%.1f Wh, F=%.1f Hz, PF=%.2f", voltage, current, active_power,
                active_energy, frequency, power_factor);
       if (this->voltage_sensor_ != nullptr)
-        if (this->voltage_sensor_ < 300)
+        if (voltage < 300)
           this->voltage_sensor_->publish_state(voltage);
       if (this->current_sensor_ != nullptr)
-        if (this->current_sensor_ < 50)
+        if (current < 50)
           this->current_sensor_->publish_state(current);
       if (this->power_sensor_ != nullptr)
-        if (this->power_sensor_ < 11000)
+        if (active_power < 11000)
           this->power_sensor_->publish_state(active_power);
       if (this->energy_sensor_ != nullptr)
         this->energy_sensor_->publish_state(active_energy);

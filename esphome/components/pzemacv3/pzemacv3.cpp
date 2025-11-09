@@ -14,9 +14,9 @@ namespace esphome
 
     void PZEMACV3::on_modbus_data(const std::vector<uint8_t> &data)
     {
-      if (data.size() != 24)
+      if (data.size() != 1024)
       {
-        ESP_LOGW(TAG, "%f Invalid size for PZEM AC!", data.size());
+        ESP_LOGW(TAG, "%u Invalid size for PZEM AC!", data.size());
         // start add
         this->voltage_sensor_->publish_state(0);
         this->current_sensor_->publish_state(0);

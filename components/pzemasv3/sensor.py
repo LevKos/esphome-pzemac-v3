@@ -28,8 +28,8 @@ from esphome.const import (
 
 AUTO_LOAD = ["modbus"]
 
-pzemac_ns = cg.esphome_ns.namespace("pzemac")
-PZEMAC = pzemac_ns.class_("PZEMAC", cg.PollingComponent, modbus.ModbusDevice)
+pzemac_ns = cg.esphome_ns.namespace("pzemacv3")
+PZEMACV3 = pzemac_ns.class_("PZEMACV3", cg.PollingComponent, modbus.ModbusDevice)
 
 # Actions
 ResetEnergyAction = pzemac_ns.class_("ResetEnergyAction", automation.Action)
@@ -37,7 +37,7 @@ ResetEnergyAction = pzemac_ns.class_("ResetEnergyAction", automation.Action)
 CONFIG_SCHEMA = (
     cv.Schema(
         {
-            cv.GenerateID(): cv.declare_id(PZEMAC),
+            cv.GenerateID(): cv.declare_id(PZEMACV3),
             cv.Optional(CONF_VOLTAGE): sensor.sensor_schema(
                 unit_of_measurement=UNIT_VOLT,
                 accuracy_decimals=1,
@@ -81,11 +81,11 @@ CONFIG_SCHEMA = (
 
 
 @automation.register_action(
-    "pzemac.reset_energy",
+    "pzemacv3.reset_energy",
     ResetEnergyAction,
     maybe_simple_id(
         {
-            cv.Required(CONF_ID): cv.use_id(PZEMAC),
+            cv.Required(CONF_ID): cv.use_id(PZEMACV3),
         }
     ),
 )

@@ -48,12 +48,12 @@ namespace esphome
     class ResetEnergyAction : public Action<Ts...>
     {
     public:
-      ResetEnergyAction(PZEMACV3 *pzemacv3) : pzemacv3_(pzemacv3) {}
+      ResetEnergyAction(PZEMACV3 *pzemac) : pzemac_(pzemac) {}
 
-      void play(const Ts &...x) override { this->pzemacv3_->reset_energy_(); }
+      void play(const Ts &...x) override { this->pzemac_->reset_energy_(); }
 
     protected:
-      PZEMACV3 *pzemacv3_;
+      PZEMACV3 *pzemac_;
     };
 
   } // namespace pzemacv3

@@ -28,11 +28,11 @@ from esphome.const import (
 
 AUTO_LOAD = ["modbus"]
 
-pzemac_ns = cg.esphome_ns.namespace("pzemacv3")
-PZEMACV3 = pzemac_ns.class_("PZEMACV3", cg.PollingComponent, modbus.ModbusDevice)
+pzemacv3_ns = cg.esphome_ns.namespace("pzemacv3")
+PZEMACV3 = pzemacv3_ns.class_("PZEMACV3", cg.PollingComponent, modbus.ModbusDevice)
 
 # Actions
-ResetEnergyAction = pzemac_ns.class_("ResetEnergyAction", automation.Action)
+ResetEnergyAction = pzemacv3_ns.class_("ResetEnergyAction", automation.Action)
 
 CONFIG_SCHEMA = (
     cv.Schema(

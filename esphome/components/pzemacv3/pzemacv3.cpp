@@ -12,6 +12,8 @@ namespace esphome
     static const uint8_t PZEM_CMD_RESET_ENERGY = 0x42;
     static const uint8_t PZEM_REGISTER_COUNT = 10; // 10x 16-bit registers
 
+    PZEMACV3::offline_skip_updates = 1;
+
     void PZEMACV3::on_offline()
     {
       if (this->voltage_sensor_ != nullptr)

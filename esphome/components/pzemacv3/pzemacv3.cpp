@@ -14,7 +14,7 @@ namespace esphome
 
     void PZEMACV3::on_modbus_data(const std::vector<uint8_t> &data)
     {
-      if (data.size() != 1024)
+      if (data.size() != 20)
       {
         ESP_LOGW(TAG, "%u Invalid size for PZEM AC!", data.size());
         // start add

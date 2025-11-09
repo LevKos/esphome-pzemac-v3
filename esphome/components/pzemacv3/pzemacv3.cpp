@@ -23,7 +23,7 @@ namespace esphome
       if (this->frequency_sensor_ != nullptr)
         this->frequency_sensor_->publish_state(0);
       if (this->power_factor_sensor_ != nullptr)
-        this->power_factor_sensor_->publish_state();
+        this->power_factor_sensor_->publish_state(0);
     }
 
     void PZEMACV3::on_modbus_data(const std::vector<uint8_t> &data)

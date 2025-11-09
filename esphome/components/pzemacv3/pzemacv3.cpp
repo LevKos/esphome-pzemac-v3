@@ -14,7 +14,7 @@ namespace esphome
 
     void PZEMACV3::on_modbus_data(const std::vector<uint8_t> &data)
     {
-      if (data.size() < 20)
+      if (data.size() != 25)
       {
         ESP_LOGW(TAG, "Invalid size for PZEM AC!");
         // start add
@@ -81,10 +81,7 @@ namespace esphome
     void PZEMACV3::update() { this->send(PZEM_CMD_READ_IN_REGISTERS, 0, PZEM_REGISTER_COUNT); }
     void PZEMACV3::dump_config()
     {
-      ESP_LOGCONFIG(TAG,
-                    "PZEMACV3:\n"
-                    "  Address: 0x%02X",
-                    this->address_);
+      ESP_LOGCONFIG(TAG, "PZEMACV3:\n  Address: 0x%02X", this->address_);
       LOG_SENSOR("", "Voltage", this->voltage_sensor_);
       LOG_SENSOR("", "Current", this->current_sensor_);
       LOG_SENSOR("", "Power", this->power_sensor_);

@@ -24,6 +24,7 @@ namespace esphome
         this->frequency_sensor_->publish_state(0);
       if (this->power_factor_sensor_ != nullptr)
         this->power_factor_sensor_->publish_state(0);
+      ESP_LOGW(TAG, "PZEM AC OffLine Address: 0x%02X", this->address_);
     }
 
     void PZEMACV3::on_modbus_data(const std::vector<uint8_t> &data)

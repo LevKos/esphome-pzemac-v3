@@ -6,8 +6,6 @@ namespace esphome
   namespace pzemacv3
   {
 
-    this->offline_skip_updates->publish_state(1);
-
     static const char *const TAG = "pzemacv3";
     static const uint8_t PZEM_CMD_READ_IN_REGISTERS = 0x04;
     static const uint8_t PZEM_CMD_RESET_ENERGY = 0x42;
@@ -97,6 +95,8 @@ namespace esphome
       LOG_SENSOR("", "Energy", this->energy_sensor_);
       LOG_SENSOR("", "Frequency", this->frequency_sensor_);
       LOG_SENSOR("", "Power Factor", this->power_factor_sensor_);
+
+      this->offline_skip_updates = 1;
     }
 
     void PZEMACV3::reset_energy_()

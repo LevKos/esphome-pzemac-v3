@@ -12,18 +12,25 @@ namespace esphome
     static const uint8_t PZEM_CMD_RESET_ENERGY = 0x42;
     static const uint8_t PZEM_REGISTER_COUNT = 10; // 10x 16-bit registers
 
+    void PZEMACV3::on_offline()
+    {
+      if (this->voltage_sensor_ != nullptr)
+        this->voltage_sensor_->publish_state(0);
+      if (this->current_sensor_ != nullptr)
+        this->current_sensor_->publish_state(0);
+      if (this->power_sensor_ != nullptr)
+        this->power_sensor_->publish_state(0);
+      if (this->frequency_sensor_ != nullptr)
+        this->frequency_sensor_->publish_state(0);
+      if (this->power_factor_sensor_ != nullptr)
+        this->power_factor_sensor_->publish_state();
+    }
+
     void PZEMACV3::on_modbus_data(const std::vector<uint8_t> &data)
     {
       if (data.size() != 20)
       {
         ESP_LOGW(TAG, "%u Invalid size for PZEM AC!", data.size());
-        // start add
-        this->voltage_sensor_->publish_state(0);
-        this->current_sensor_->publish_state(0);
-        this->power_sensor_->publish_state(0);
-        this->frequency_sensor_->publish_state(0);
-        this->power_factor_sensor_->publish_state(0);
-        // stop add
         return;
       }
 

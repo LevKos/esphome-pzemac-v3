@@ -95,8 +95,6 @@ namespace esphome
       LOG_SENSOR("", "Energy", this->energy_sensor_);
       LOG_SENSOR("", "Frequency", this->frequency_sensor_);
       LOG_SENSOR("", "Power Factor", this->power_factor_sensor_);
-
-      this->offline_skip_updates = 1;
     }
 
     void PZEMACV3::reset_energy_()

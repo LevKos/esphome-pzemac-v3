@@ -15,15 +15,16 @@ namespace esphome
     {
 
       if (this->voltage_sensor_ != nullptr)
-        this->voltage_sensor_->publish_state(nullptr);
+        //        this->publish_state_(mvoltage_sensor_, NAN);
+        this->voltage_sensor_->publish_state(NAN);
       if (this->current_sensor_ != nullptr)
-        this->current_sensor_->publish_state(nullptr);
+        this->current_sensor_->publish_state(NAN);
       if (this->power_sensor_ != nullptr)
-        this->power_sensor_->publish_state(nullptr);
+        this->power_sensor_->publish_state(NAN);
       if (this->frequency_sensor_ != nullptr)
-        this->frequency_sensor_->publish_state(nullptr);
+        this->frequency_sensor_->publish_state(NAN);
       if (this->power_factor_sensor_ != nullptr)
-        this->power_factor_sensor_->publish_state(nullptr);
+        this->power_factor_sensor_->publish_state(NAN);
       ESP_LOGW(TAG, "PZEM AC OffLine Address: 0x%02X", this->address_);
     }
 

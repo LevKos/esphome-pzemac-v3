@@ -55,7 +55,7 @@ namespace esphome
           if (waiting_for_response > 0)
           {
             ESP_LOGV(TAG, "Stop waiting for response from %d", waiting_for_response);
-            device->on_modbus_offline();
+            this->on_modbus_offline();
           }
           waiting_for_response = 0;
         }

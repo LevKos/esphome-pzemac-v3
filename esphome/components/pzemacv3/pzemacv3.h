@@ -3,7 +3,7 @@
 #include "esphome/core/automation.h"
 #include "esphome/core/component.h"
 #include "esphome/components/sensor/sensor.h"
-#include "esphome/components/modbus/modbus.h"
+#include "esphome/components/mymodbus/mymodbus.h"
 
 #include <vector>
 
@@ -15,7 +15,7 @@ namespace esphome
     template <typename... Ts>
     class ResetEnergyAction;
 
-    class PZEMACV3 : public PollingComponent, public modbus::ModbusDevice
+    class PZEMACV3 : public PollingComponent, public mymodbus::MyModbusDevice
     {
 
     public:
@@ -29,7 +29,7 @@ namespace esphome
       void update() override;
 
       //      void on_offline();
-      void on_modbus_error(uint8_t function_code, uint8_t exception_code) override;
+      void on_modbus_offline() override;
 
       void on_modbus_data(const std::vector<uint8_t> &data) override;
 

@@ -1,7 +1,7 @@
 from esphome import automation
 from esphome.automation import maybe_simple_id
 import esphome.codegen as cg
-from esphome.components import modbus, sensor
+from esphome.components import mymodbus, sensor
 import esphome.config_validation as cv
 from esphome.const import (
     CONF_CURRENT,
@@ -26,10 +26,10 @@ from esphome.const import (
     UNIT_WATT_HOURS,
 )
 
-AUTO_LOAD = ["modbus"]
+AUTO_LOAD = ["mymodbus"]
 
 pzemacv3_ns = cg.esphome_ns.namespace("pzemacv3")
-PZEMACV3 = pzemacv3_ns.class_("PZEMACV3", cg.PollingComponent, modbus.ModbusDevice)
+PZEMACV3 = pzemacv3_ns.class_("PZEMACV3", cg.PollingComponent, mymodbus.ModbusDevice)
 
 # Actions
 ResetEnergyAction = pzemacv3_ns.class_("ResetEnergyAction", automation.Action)
@@ -76,7 +76,7 @@ CONFIG_SCHEMA = (
         }
     )
     .extend(cv.polling_component_schema("60s"))
-    .extend(modbus.modbus_device_schema(0x01))
+    .extend(mymodbus.modbus_device_schema(0x01))
 )
 
 
@@ -97,7 +97,7 @@ async def reset_energy_to_code(config, action_id, template_arg, args):
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
-    await modbus.register_modbus_device(var, config)
+    await mymodbus.register_modbus_device(var, config)
 
     if CONF_VOLTAGE in config:
         conf = config[CONF_VOLTAGE]

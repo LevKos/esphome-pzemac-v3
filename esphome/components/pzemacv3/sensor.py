@@ -29,7 +29,7 @@ from esphome.const import (
 AUTO_LOAD = ["mymodbus"]
 
 pzemacv3_ns = cg.esphome_ns.namespace("pzemacv3")
-PZEMACV3 = pzemacv3_ns.class_("PZEMACV3", cg.PollingComponent, mymodbus.ModbusDevice)
+PZEMACV3 = pzemacv3_ns.class_("PZEMACV3", cg.PollingComponent, mymodbus.MyModbusDevice)
 
 # Actions
 ResetEnergyAction = pzemacv3_ns.class_("ResetEnergyAction", automation.Action)

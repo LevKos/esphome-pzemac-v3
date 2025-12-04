@@ -3,7 +3,7 @@
 #include "esphome/core/component.h"
 #include "esphome/components/uart/uart.h"
 
-#include "esphome/components/modbus/modbus_definitions.h"
+#include "mymodbus_definitions.h"
 
 #include <vector>
 

@@ -11,19 +11,19 @@ namespace esphome
     static const uint8_t PZEM_CMD_RESET_ENERGY = 0x42;
     static const uint8_t PZEM_REGISTER_COUNT = 10; // 10x 16-bit registers
 
-    void PZEMACV3::on_modbus_offline()
+    void PZEMACV3::on_modbusdevice_offline()
     {
 
       if (this->voltage_sensor_ != nullptr)
-        this->voltage_sensor_->publish_state(0);
+        this->voltage_sensor_->publish_state(nullptr);
       if (this->current_sensor_ != nullptr)
-        this->current_sensor_->publish_state(0);
+        this->current_sensor_->publish_state(nullptr);
       if (this->power_sensor_ != nullptr)
-        this->power_sensor_->publish_state(0);
+        this->power_sensor_->publish_state(nullptr);
       if (this->frequency_sensor_ != nullptr)
-        this->frequency_sensor_->publish_state(0);
+        this->frequency_sensor_->publish_state(nullptr);
       if (this->power_factor_sensor_ != nullptr)
-        this->power_factor_sensor_->publish_state(0);
+        this->power_factor_sensor_->publish_state(nullptr);
       ESP_LOGW(TAG, "PZEM AC OffLine Address: 0x%02X", this->address_);
     }
 

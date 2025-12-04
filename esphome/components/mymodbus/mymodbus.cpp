@@ -339,5 +339,25 @@ namespace esphome
       last_send_ = millis();
     }
 
+    void MyModbus::on_modbus_offline(void)
+    {
+      bool found = false;
+      for (auto *device : this->devices_)
+      {
+        if (device->address_ == address)
+        {
+          found = true;
+          // event to device offlinr
+          ESP_LOGW(TAG, "Device of adress 0x%02X OffLine! ", address);
+          device->on_modbusdevice_offline();
+        }
+      }
+      waiting_for_response = 0;
+      if (!found)
+      {
+        ESP_LOGW(TAG, "Got MyModbus frame from unknown address 0x%02X! ", address);
+      }
+      return;
+    }
   } // namespace mymodbus
 } // namespace esphome

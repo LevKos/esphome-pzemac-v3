@@ -3,7 +3,7 @@
 #include "esphome/core/automation.h"
 #include "esphome/core/component.h"
 #include "esphome/components/sensor/sensor.h"
-#include "esphome/components/mymodbus/mymodbus.h"
+#include "e../mymodbus/mymodbus.h"
 
 #include <vector>
 

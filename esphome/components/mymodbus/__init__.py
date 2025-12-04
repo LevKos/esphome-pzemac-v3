@@ -14,14 +14,14 @@ DEPENDENCIES = ["uart"]
 
 modbus_ns = cg.esphome_ns.namespace("mymodbus")
 MyModbus = modbus_ns.class_("MyModbus", cg.Component, uart.UARTDevice)
-MyModbusDevice = modbus_ns.class_("ModbusDevice")
+MyModbusDevice = modbus_ns.class_("MyModbusDevice")
 MULTI_CONF = True
 
 CONF_ROLE = "role"
 CONF_MODBUS_ID = "modbus_id"
 CONF_SEND_WAIT_TIME = "send_wait_time"
 
-MyModbusRole = modbus_ns.enum("ModbusRole")
+MyModbusRole = modbus_ns.enum("MyModbusRole")
 MODBUS_ROLES = {
     "client": MyModbusRole.CLIENT,
     "server": MyModbusRole.SERVER,

@@ -37,6 +37,11 @@ namespace esphome
             ESP_LOGV(TAG, "Clearing buffer of %d bytes - parse failed", at);
             this->rx_buffer_.clear();
           }
+          else
+          {
+            ESP_LOGV(TAG, "Buffer of %d bytes - device offline", at);
+            this->on_modbus_offline();
+          }
         }
       }
 

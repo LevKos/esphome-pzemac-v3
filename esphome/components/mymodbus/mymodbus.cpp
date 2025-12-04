@@ -344,18 +344,18 @@ namespace esphome
       bool found = false;
       for (auto *device : this->devices_)
       {
-        if (device->address_ == address)
+        if (device->address_ == waiting_for_response)
         {
           found = true;
           // event to device offlinr
-          ESP_LOGW(TAG, "Device of adress 0x%02X OffLine! ", address);
+          ESP_LOGW(TAG, "Device of adress 0x%02X OffLine! ", waiting_for_response);
           device->on_modbusdevice_offline();
         }
       }
       waiting_for_response = 0;
       if (!found)
       {
-        ESP_LOGW(TAG, "Got MyModbus frame from unknown address 0x%02X! ", address);
+        ESP_LOGW(TAG, "Got MyModbus frame from unknown address 0x%02X! ", waiting_for_response);
       }
       return;
     }

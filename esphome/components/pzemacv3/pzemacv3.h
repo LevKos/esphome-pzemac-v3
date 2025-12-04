@@ -28,7 +28,8 @@ namespace esphome
 
       void update() override;
 
-      void on_offline();
+      //      void on_offline();
+      void on_modbus_error(uint8_t function_code, uint8_t exception_code) override;
 
       void on_modbus_data(const std::vector<uint8_t> &data) override;
 

@@ -13,9 +13,7 @@ namespace esphome
 
     void PZEMACV3::on_modbusdevice_offline()
     {
-
       if (this->voltage_sensor_ != nullptr)
-        //        this->publish_state_(mvoltage_sensor_, NAN);
         this->voltage_sensor_->publish_state(NAN);
       if (this->current_sensor_ != nullptr)
         this->current_sensor_->publish_state(NAN);

@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from typing import Literal
 
+CONF_DISABLE_CRC = "disable_crc"
+
 from esphome import pins
 import esphome.codegen as cg
 from esphome.components import uart

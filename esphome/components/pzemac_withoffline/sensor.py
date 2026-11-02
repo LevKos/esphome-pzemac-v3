@@ -26,4 +26,4 @@ async def to_code(config):
     # Правильний метод ESPHome для створення нового екземпляра об'єкта в C++
     var = cg.new_Pvariable(config[CONF_ID])
     # Передаємо конфіг в оригінальну функцію, щоб вона налаштувала всі сенсори та Modbus
-    await pzemac_sensor.to_code_base(var, config)
+    await pzemac_sensor.to_code_base()

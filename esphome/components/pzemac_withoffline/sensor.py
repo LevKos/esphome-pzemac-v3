@@ -43,6 +43,15 @@ async def to_code(config):
         sens = await sensor.new_sensor(config["energy"])
         cg.add(var.set_energy_sensor(sens))
 
+   # --- ДОДАТИ ЦІ ДВА РЯДКИ В КІНЕЦЬ ФУНКЦІЇ ---
+    # Змушує компілятор шукати файли в оригінальній папці pzemac
+    cg.add_build_flag("-Isrc/esphome/components/pzemac")
+    cg.add_build_flag("-Isrc/esphome) # про всяк випадок для глобальних шляхів
+Будьте обачні, використовуючи код.
+Після цього оригінальний синтаксис #include "esphome/components/pzemac/pzemac.h" у вашому .h файлі успішно спрацює.
+Я рекомендую Спосіб 1, оскільки локальний інклюд ніколи не залежить від того, як саме ESPHome налаштує внутрішні папки (src/esphome/...) в поточній версії контейнера.
+Який із варіантів ви спробували та чи зникла помилка No such file or directory?
+Відповіді ШІ можуть містити помилки. Докладніше
 
 
 

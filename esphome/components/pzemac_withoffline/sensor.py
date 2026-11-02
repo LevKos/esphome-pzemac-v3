@@ -23,14 +23,35 @@ PZEMACWithOffline = pzemac_withoffline_ns.class_(
 async def to_code(config):
     # Створюємо екземпляр нашого C++ класу
 #    var = cg.new_PvM(PZEMACWithOffline)
-    # Правильний метод ESPHome для створення нового екземпляра об'єкта в C++
+
+    # 4. Створюємо екземпляр НАШОГО C++ класу замість оригінального
     var = cg.new_Pvariable(config[CONF_ID])
+
+    # 5. Реєструємо компонент у системі та підключаємо Modbus (копіюємо логіку оригіналу)
+    await cg.register_component(var, config)
+    await modbus.register_modbus_device(var, config)
+
+    # 6. Прив'язуємо всі сенсори, які користувач вказав у YAML
+    # Перевіряємо кожен можливий сенсор PZEM04T і реєструємо його
+    for prop in ["voltage", "current", "active_power", "frequency", "power_factor"]:
+        if prop in config:
+            sens = await sensor.new_sensor(config[prop])
+            cg.add(getattr(var, f"set_{prop}_sensor")(sens))
+            
+    # Окремо реєструємо лічильник енергії, бо в коді pzemac він має назву "energy"
+    if "energy" in config:
+        sens = await sensor.new_sensor(config["energy"])
+        cg.add(var.set_energy_sensor(sens))
+
+
+
+
     # Передаємо конфіг в оригінальну функцію, щоб вона налаштувала всі сенсори та Modbus
 #    await pzemac_sensor.to_code_base()
 
     # Викликаємо оригінальну генерацію коду pzemac.
     # Вона сама налаштує UART, Modbus та прив'яже всі сенсори (напругу, струм і т.д.) до нашого var.
-    await pzemac_sensor.to_code(config)
+#    await pzemac_sensor.to_code(config)
     
     # Переписуємо тип створеної змінної у фінальному C++ файлі на наш клас
-    cg.add(var)
+#    cg.add(var)

@@ -2,7 +2,8 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import sensor, modbus
 # Імпортуємо саме модуль сенсора оригінального pzemac
-from esphome.components.pzemac import esphome.const import CONF_ID
+from esphome.components.pzemac import sensor as pzemac_sensor
+from esphome.const import CONF_ID
 
 # Беремо схему валідації та базову функцію генерації з оригінального сенсора
 CONFIG_SCHEMA = pzemac_sensor.CONFIG_SCHEMA

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "esphome/components/pzemac/pzemac.h"
+#include "pzemac.h"
 
 namespace esphome {
 namespace pzemac_withoffline {

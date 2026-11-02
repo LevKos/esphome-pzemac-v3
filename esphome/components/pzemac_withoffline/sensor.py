@@ -21,6 +21,6 @@ PZEMACWithOffline = pzemac_withoffline_ns.class_(
 
 async def to_code(config):
     # Створюємо екземпляр нашого C++ класу
-    var = cg.new_Pvm(PZEMACWithOffline)
+    var = cg.new_PVm(PZEMACWithOffline)
     # Передаємо конфіг в оригінальну функцію, щоб вона налаштувала всі сенсори та Modbus
     await pzemac_sensor.to_code_base(var, config)

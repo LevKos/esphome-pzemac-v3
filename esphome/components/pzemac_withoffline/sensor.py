@@ -9,12 +9,18 @@ CONFIG_SCHEMA = pzemac_sensor.CONFIG_SCHEMA
 
 # Оголошуємо наш новий простір імен та клас
 pzemac_withoffline_ns = cg.esphome_ns.namespace("pzemac_withoffline")
+
+# Оголошуємо C++ клас. Він наслідується від оригінального pzemac::PZEMAC
 PZEMACWithOffline = pzemac_withoffline_ns.class_(
-    "PZEMACWithOffline", pzemac_sensor.PZEMAC, cg.Component, modbus.ModbusDevice
+    "PZEMACWithOffline", pzemac_sensor.PZEMAC
 )
+
+# PZEMACWithOffline = pzemac_withoffline_ns.class_(
+#    "PZEMACWithOffline", pzemac_sensor.PZEMAC, cg.C#omponent, modbus.ModbusDevice
+#)
 
 async def to_code(config):
     # Створюємо екземпляр нашого C++ класу
-    var = cg.new_PVM(PZEMACWithOffline)
+    var = cg.new_Pvm(PZEMACWithOffline)
     # Передаємо конфіг в оригінальну функцію, щоб вона налаштувала всі сенсори та Modbus
     await pzemac_sensor.to_code_base(var, config)

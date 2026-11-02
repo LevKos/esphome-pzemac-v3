@@ -44,7 +44,7 @@ class PZEMACWithOffline : public pzemac::PZEMAC {
       // Примусово відправляємо NAN, щоб Home Assistant розірвав графіки
       if (this->voltage_sensor_ != nullptr) this->voltage_sensor_->publish_state(NAN);
       if (this->current_sensor_ != nullptr) this->current_sensor_->publish_state(NAN);
-      if (this->active_power_sensor_ != nullptr) this->active_power_sensor_->publish_state(NAN);
+      if (this->power_sensor_ != nullptr) this->power_sensor_->publish_state(NAN);
       if (this->frequency_sensor_ != nullptr) this->frequency_sensor_->publish_state(NAN);
       if (this->power_factor_sensor_ != nullptr) this->power_factor_sensor_->publish_state(NAN);
     }
